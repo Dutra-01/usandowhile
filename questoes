@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <math.h>
+
+void menu(void){
+    printf("--------------------------------------------------\n");
+    printf("----------------- CALCULADORA --------------------\n");    
+    printf("--------------------------------------------------\n");    
+    printf("  1 = Elevar ao quadrado \t 2 = Raiz quadrada\n");
+    printf("  3 = soma               \t 4 = subtracao\n");
+    printf("  5 = divisao            \t 6 = multiplicacao\n");
+    printf("--------------------------------------------------\n\n");
+}
+
+
+int decida_opercao(int num){
+    int total, x, y;
+    switch(num){
+        case 1:
+        printf("\ndigite um valor para ser elevado ao quadrado: ");
+        scanf("%i", &x);
+        total = pow(x, 2);
+        printf("\nO quadrado de %i eh: %i \n\n", x, total);
+        return(total);
+        break;
+        
+        case 2:
+        printf("\ndigite um valor para ter a sua raiz quadrada: ");
+        scanf("%i", &x);        
+        total = sqrt(x);
+        printf("\nRaiz quadrada de %i eh: %i \n\n", x, total);
+        return(total);
+        break;
+        
+        case 3:
+        printf("\ndigite o primeiro valor para ser somado: ");
+        scanf("%i", &x);
+        printf("\ndigite o Segundo valor para ser somado: ");
+        scanf("%i", &y); 
+        total = x+y;
+        printf("\nA soma de %i + %i eh: %i \n\n", x, y, total);
+        return(total);
+
+        case 4:
+        printf("\ndigite o primeiro valor da subtracao: ");
+        scanf("%i", &x); 
+        printf("\ndigite o  valor segundo valor da subtracao: ");
+        scanf("%i", &y);
+        total = x-y;
+        printf("\nA subtracao de %i - %i eh: %i \n\n", x, y, total);
+        return(total);
+        break;
+        
+        case 5:
+        printf("\ndigite o primeiro valor da divisao: ");
+        scanf("%i", &x); 
+        printf("\ndigite o  valor segundo valor da divisao: ");
+        scanf("%i", &y);
+        while(y == 0){
+            printf("\nNao é possível realizar divisao por 0");
+            printf("\ndigite o  valor segundo valor da divisao: ");
+            scanf("%i", &y);
+        }
+        total = x/y;
+        printf("\nA divisao de %i / %i eh: %i \n\n", x, y, total);
+        return(total);
+        break;
+        
+        case 6:
+        printf("\ndigite o primeiro valor da multiplicacao: ");
+        scanf("%i", &x); 
+        printf("\ndigite o  valor segundo valor da multiplicacao: ");
+        scanf("%i", &y);        
+        total = x*y;
+        printf("\nA multiplicacao de %i*%i eh: %i \n\n", x, y, total);
+        return(total);
+        break;
+    }
+}
+
+int main(void){
+    int num;
+    char continuar;
+
+    while(continuar != 'N' && continuar != 'n'){
+        menu();
+        printf("Escolha um numero entre 1 - 6: ");
+        scanf("%i", &num);
+        
+        while(num<1 || num>6){
+            printf("\n\n***** ESCOLHA SOMENTE UM NUMERO ENTRE 1 - 6 ******\n");
+            menu();
+            printf("Digite novamente: ");
+            scanf("%i", &num);
+        }
+        
+        decida_opercao(num);
+        
+        printf("\nDeseja relizar outra operacao? S/N: ");
+        scanf(" %c", &continuar);
+        while(continuar != 'N' && continuar != 'n' && continuar != 'S' && continuar != 's'){
+            printf("\nDigite S ou N. Novamente: ");
+            scanf(" %c", &continuar);
+        }
+        
+    }
+    
+    return 0;
+}
